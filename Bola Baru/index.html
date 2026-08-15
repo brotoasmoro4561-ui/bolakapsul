@@ -488,6 +488,94 @@
       flex-shrink: 0;
       padding: 0 6px;
     }
+
+    /* ===== TESTIMONI STYLES ===== */
+    .testimoni-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 16px 18px;
+      transition: all .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimoni-card:hover {
+      background: rgba(34, 211, 238, 0.04);
+      border-color: rgba(34, 211, 238, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+    .testimoni-card .quote-icon {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      font-size: 32px;
+      color: rgba(34, 211, 238, 0.05);
+      font-family: 'Sora', sans-serif;
+      line-height: 1;
+    }
+    .testimoni-card .star {
+      color: var(--amber);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .testimoni-card .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--cyan), var(--indigo));
+      color: #0a0b14;
+    }
+    .testimoni-card .user-avatar.green {
+      background: linear-gradient(135deg, #4ade80, #22d3ee);
+    }
+    .testimoni-card .user-avatar.amber {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    }
+    .testimoni-card .user-avatar.red {
+      background: linear-gradient(135deg, #f87171, #fb923c);
+    }
+    .testimoni-card .user-avatar.purple {
+      background: linear-gradient(135deg, #a78bfa, #818cf8);
+    }
+    .testimoni-card .user-avatar.pink {
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+    }
+    .testimoni-badge {
+      font-size: 7px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .badge-wd {
+      background: rgba(74, 222, 128, 0.1);
+      color: var(--green);
+      border: 1px solid rgba(74, 222, 128, 0.15);
+    }
+    .badge-win {
+      background: rgba(251, 191, 36, 0.1);
+      color: var(--amber);
+      border: 1px solid rgba(251, 191, 36, 0.15);
+    }
+    .badge-bonus {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--cyan);
+      border: 1px solid rgba(34, 211, 238, 0.15);
+    }
+    .badge-jp {
+      background: rgba(248, 113, 113, 0.1);
+      color: var(--red);
+      border: 1px solid rgba(248, 113, 113, 0.15);
+    }
+
     .tx-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.04);
@@ -852,27 +940,45 @@
       border-radius: 10px;
       font-weight: 700;
     }
+
+    /* Animated counter for testimoni */
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .count-up {
+      animation: countUp 0.6s ease forwards;
+    }
+
+    /* Marquee testimoni */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-testimoni {
+      display: flex;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-testimoni:hover {
+      animation-play-state: paused;
+    }
   </style>
 </head>
 <body>
 
   <!-- ============================================================
-       POPUP BANNER - 
+       POPUP BANNER
        ============================================================ -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup-container">
-      <!-- Glow effect -->
       <div class="popup-glow"></div>
-
-      <!-- Tombol Close (X) -->
       <button class="popup-close" id="popupClose" aria-label="Tutup banner">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
-
-      <!-- BANNER IMAGE -->
       <a href="https://akseslink.com/kapsul4d" target="_blank" class="popup-banner">
         <img 
           src="https://ik.imagekit.io/8btthcfrf/Uploud/e6a972c6-4920-468c-80d6-aefa22558ede_11zon.png?updatedAt=1786668230036" 
@@ -880,8 +986,6 @@
           onerror="this.onerror=null; this.src='https://dummyimage.com/600x400/0c101c/22d3ee.png&text=KAPSUL4D+POPUP+PROMO';"
         />
       </a>
-
-      <!-- CONTENT -->
       <div class="popup-content">
         <div class="popup-title"> KAPSUL4D</div>
         <div class="popup-sub">Situs Betting Online &amp; Terpercaya Sejak 2019</div>
@@ -914,7 +1018,7 @@
         <button class="nav-item" data-section="jadwal"><i data-lucide="calendar-days" class="w-[16px] h-[16px]"></i>Jadwal</button>
         <button class="nav-item" data-section="prediksi"><i data-lucide="target" class="w-[16px] h-[16px]"></i>Prediksi</button>
         <button class="nav-item" data-section="parlay"><i data-lucide="ticket" class="w-[16px] h-[16px]"></i>Mix Parlay</button>
-        <button class="nav-item" data-section="transaksi"><i data-lucide="wallet" class="w-[16px] h-[16px]"></i>Transaksi</button>
+        <button class="nav-item" data-section="testimoni"><i data-lucide="message-square" class="w-[16px] h-[16px]"></i>Testimoni</button>
       </nav>
 
       <div class="flex lg:hidden gap-2 mt-4">
@@ -1024,43 +1128,53 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="spotlightCards"></div>
 
+        <!-- ========== TESTIMONI MEMBER PREVIEW ========== -->
         <div class="mt-6">
           <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
             <div class="flex items-center gap-2">
-              <i data-lucide="wallet" class="section-icon text-green-400"></i>
-              <h2 class="section-title text-green-400">Realtime Transaksi Live</h2>
+              <i data-lucide="message-square" class="section-icon text-green-400"></i>
+              <h2 class="section-title text-green-400">💬 Testimoni Member KAPSUL4D</h2>
               <span class="flex items-center gap-1 text-[7px] bg-green-400/10 text-green-300 border border-green-400/10 px-1.5 py-0.5 rounded-full">
                 <span class="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot"></span>
-                <span id="liveCounter">0</span> transaksi baru
+                <span id="testiCounter">1.248</span> Member Puas
               </span>
             </div>
-            <div class="flex items-center gap-1.5">
-              <button class="bet-type-tab active" data-txfilter="all" onclick="filterTransaction('all')">Semua</button>
-              <button class="bet-type-tab" data-txfilter="deposit" onclick="filterTransaction('deposit')">Deposit</button>
-              <button class="bet-type-tab" data-txfilter="withdraw" onclick="filterTransaction('withdraw')">Withdraw</button>
+            <div class="flex items-center gap-1">
+              <button class="bet-type-tab active" data-testifilter="all" onclick="filterTesti('all')">Semua</button>
+              <button class="bet-type-tab" data-testifilter="wd" onclick="filterTesti('wd')">💸 WD</button>
+              <button class="bet-type-tab" data-testifilter="jp" onclick="filterTesti('jp')">🏆 Jackpot</button>
+              <button class="bet-type-tab" data-testifilter="bonus" onclick="filterTesti('bonus')">🎁 Bonus</button>
             </div>
           </div>
 
+          <!-- Testimoni Counter -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-3">
             <div class="glass tx-summary-card p-2.5 sm:p-3 anim-in">
-              <div class="text-[8px] text-white/30 uppercase tracking-wider">Total Deposit</div>
-              <div class="tx-summary-number text-green-400" id="totalDeposit">Rp 0</div>
+              <div class="text-[8px] text-white/30 uppercase tracking-wider">Total WD</div>
+              <div class="tx-summary-number text-green-400" id="totalWd">Rp 0</div>
             </div>
             <div class="glass tx-summary-card p-2.5 sm:p-3 anim-in anim-in-delay-1">
-              <div class="text-[8px] text-white/30 uppercase tracking-wider">Total Withdraw</div>
-              <div class="tx-summary-number text-red-400" id="totalWithdraw">Rp 0</div>
+              <div class="text-[8px] text-white/30 uppercase tracking-wider">Jackpot</div>
+              <div class="tx-summary-number text-amber-400" id="totalJp">0</div>
             </div>
             <div class="glass tx-summary-card p-2.5 sm:p-3 anim-in anim-in-delay-2">
-              <div class="text-[8px] text-white/30 uppercase tracking-wider">Transaksi Sukses</div>
-              <div class="tx-summary-number text-cyan-400" id="totalSuccess">0</div>
+              <div class="text-[8px] text-white/30 uppercase tracking-wider">Member Aktif</div>
+              <div class="tx-summary-number text-cyan-400" id="totalMember">0</div>
             </div>
             <div class="glass tx-summary-card p-2.5 sm:p-3 anim-in anim-in-delay-3">
-              <div class="text-[8px] text-white/30 uppercase tracking-wider">Pending</div>
-              <div class="tx-summary-number text-amber-400" id="totalPending">0</div>
+              <div class="text-[8px] text-white/30 uppercase tracking-wider">Rating Puas</div>
+              <div class="tx-summary-number text-amber-400" id="totalRating">0%</div>
             </div>
           </div>
 
-          <div id="transactionList" class="space-y-1.5 max-h-[400px] overflow-y-auto pr-1"></div>
+          <div id="testimoniList" class="space-y-2"></div>
+
+          <!-- Tombol Lihat Semua -->
+          <div class="text-center mt-4">
+            <a href="#" onclick="navigateTo('testimoni'); return false;" class="text-[10px] font-bold text-cyan-400 hover:text-cyan-300 transition-colors border border-cyan-400/20 px-4 py-1.5 rounded-lg hover:bg-cyan-400/5 inline-block">
+              📋 Lihat Semua Testimoni →
+            </a>
+          </div>
         </div>
       </div>
 
@@ -1104,32 +1218,44 @@
         <div id="parlayFullList" class="grid grid-cols-1 lg:grid-cols-2 gap-3"></div>
       </div>
 
-      <!-- TRANSaksi Page -->
-      <div id="secTransaksi" style="display:none">
+      <!-- TESTIMONI Full Page -->
+      <div id="secTestimoni" style="display:none">
         <div class="flex items-center gap-2 mb-4">
-          <i data-lucide="wallet" class="section-icon text-green-400"></i>
-          <h2 class="section-title text-green-400">Semua Transaksi Member</h2>
-          <span class="text-[8px] text-white/20">Live update setiap 8 detik</span>
+          <i data-lucide="message-square" class="section-icon text-green-400"></i>
+          <h2 class="section-title text-green-400">💬 Testimoni & Sukses Member</h2>
+          <span class="text-[8px] text-white/20">Cerita nyata member KAPSUL4D</span>
         </div>
+
+        <!-- Statistik Testimoni -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-4">
           <div class="glass tx-summary-card p-2.5 sm:p-3">
-            <div class="text-[8px] text-white/30 uppercase tracking-wider">Total Deposit</div>
-            <div class="tx-summary-number text-green-400" id="totalDepositFull">Rp 0</div>
+            <div class="text-[8px] text-white/30 uppercase tracking-wider">Total WD</div>
+            <div class="tx-summary-number text-green-400" id="totalWdFull">Rp 0</div>
           </div>
           <div class="glass tx-summary-card p-2.5 sm:p-3">
-            <div class="text-[8px] text-white/30 uppercase tracking-wider">Total Withdraw</div>
-            <div class="tx-summary-number text-red-400" id="totalWithdrawFull">Rp 0</div>
+            <div class="text-[8px] text-white/30 uppercase tracking-wider">Jackpot</div>
+            <div class="tx-summary-number text-amber-400" id="totalJpFull">0</div>
           </div>
           <div class="glass tx-summary-card p-2.5 sm:p-3">
-            <div class="text-[8px] text-white/30 uppercase tracking-wider">Transaksi Sukses</div>
-            <div class="tx-summary-number text-cyan-400" id="totalSuccessFull">0</div>
+            <div class="text-[8px] text-white/30 uppercase tracking-wider">Member Aktif</div>
+            <div class="tx-summary-number text-cyan-400" id="totalMemberFull">0</div>
           </div>
           <div class="glass tx-summary-card p-2.5 sm:p-3">
-            <div class="text-[8px] text-white/30 uppercase tracking-wider">Pending</div>
-            <div class="tx-summary-number text-amber-400" id="totalPendingFull">0</div>
+            <div class="text-[8px] text-white/30 uppercase tracking-wider">Rating Puas</div>
+            <div class="tx-summary-number text-amber-400" id="totalRatingFull">0%</div>
           </div>
         </div>
-        <div id="transactionFullList" class="space-y-1.5 max-h-[600px] overflow-y-auto pr-1"></div>
+
+        <!-- Filter -->
+        <div class="flex items-center gap-1 mb-4 flex-wrap">
+          <button class="bet-type-tab active" data-testifilter="all" onclick="filterTestiFull('all')">Semua</button>
+          <button class="bet-type-tab" data-testifilter="wd" onclick="filterTestiFull('wd')">💸 Withdraw</button>
+          <button class="bet-type-tab" data-testifilter="jp" onclick="filterTestiFull('jp')">🏆 Jackpot</button>
+          <button class="bet-type-tab" data-testifilter="bonus" onclick="filterTestiFull('bonus')">🎁 Bonus</button>
+          <button class="bet-type-tab" data-testifilter="win" onclick="filterTestiFull('win')">✅ Menang Parlay</button>
+        </div>
+
+        <div id="testimoniFullList" class="space-y-2"></div>
       </div>
 
       <footer class="text-center text-[9px] text-white/20 pb-3 mt-10 border-t border-white/5 pt-4">
@@ -1147,19 +1273,15 @@
       var popup = document.getElementById('popupOverlay');
       var closeBtn = document.getElementById('popupClose');
 
-      // Fungsi untuk menutup popup
       function closePopup() {
         popup.classList.add('hidden');
-        // Set cookie agar popup tidak muncul lagi dalam sesi yang sama
-        document.cookie = "popupClosed=true; path=/; max-age=" + (60 * 60 * 24); // 1 hari
+        document.cookie = "popupClosed=true; path=/; max-age=" + (60 * 60 * 24);
       }
 
-      // Tutup dengan tombol X
       if (closeBtn) {
         closeBtn.addEventListener('click', closePopup);
       }
 
-      // Tutup dengan klik di luar popup (area overlay)
       if (popup) {
         popup.addEventListener('click', function(e) {
           if (e.target === this) {
@@ -1168,21 +1290,19 @@
         });
       }
 
-      // Tutup dengan tombol ESC
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && popup && !popup.classList.contains('hidden')) {
           closePopup();
         }
       });
 
-      // Cek cookie - jika sudah pernah ditutup, langsung sembunyikan
       if (document.cookie.indexOf('popupClosed=true') !== -1) {
         if (popup) popup.classList.add('hidden');
       }
     })();
 
     /* ============================================================
-       DATA MATCHES & PREDICTIONS
+       DATA
        ============================================================ */
 
     var MATCHES = [
@@ -1268,230 +1388,306 @@
       { league: '🏴 Championship', home: 'Sheffield United', away: 'Birmingham City', score: '2 - 0', confidence: 'high', confidencePct: 72, note: 'Sheffield United target promosi.' },
     ];
 
-    /* ============================================================
-       TRANSACTION DATA
-       ============================================================ */
-
-    var transactionData = [];
-    var txIdCounter = 0;
-    var liveTxCount = 0;
-
-    var userNames = [
-      'Budi', 'Andi', 'Siti', 'Rudi', 'Dewi', 'Agus', 'Rina', 'Tommy',
-      'Lisa', 'Joko', 'Maya', 'Hendra', 'Cici', 'Dodo', 'Eva', 'Fajar',
-      'Gina', 'Hari', 'Indah', 'Joni', 'Kiki', 'Lina', 'Maman', 'Nina',
-      'Oscar', 'Putri', 'Qori', 'Rama', 'Santi', 'Tono', 'Umi', 'Vito',
-      'Wati', 'Xavier', 'Yuni', 'Zaki'
+    // ===== TESTIMONI DATA =====
+    var TESTIMONI_DATA = [
+      { 
+        user: 'Budi Santoso', 
+        city: 'Jakarta', 
+        type: 'wd', 
+        amount: 15000000, 
+        text: 'WD Rp 15.000.000 dalam 5 menit! Proses super cepat, langsung masuk ke rekening. KAPSUL4D memang terpercaya! 🔥',
+        stars: 5,
+        time: '2 jam lalu',
+        avatarColor: 'green'
+      },
+      { 
+        user: 'Rina Wijaya', 
+        city: 'Surabaya', 
+        type: 'jp', 
+        amount: 3500000, 
+        text: 'Deposit Rp 100.000 jadi Rp 3.500.000! Mix Parlay 3 tim tembus semua. Odds @35x, gila banget! 🏆',
+        stars: 5,
+        time: '5 jam lalu',
+        avatarColor: 'amber'
+      },
+      { 
+        user: 'Agus Pratama', 
+        city: 'Bandung', 
+        type: 'bonus', 
+        amount: 100000, 
+        text: 'Baru daftar langsung dapat bonus 100%. Deposit 100k jadi 200k. Langsung main dan WD 500k! Mantap! 🎁',
+        stars: 5,
+        time: '8 jam lalu',
+        avatarColor: 'purple'
+      },
+      { 
+        user: 'Siti Rahayu', 
+        city: 'Medan', 
+        type: 'win', 
+        amount: 2800000, 
+        text: 'Parlay 4 tim menang semua! Total odds @28x. KAPSUL4D prediksinya akurat banget, ikutin terus! ✅',
+        stars: 5,
+        time: '12 jam lalu',
+        avatarColor: 'pink'
+      },
+      { 
+        user: 'Joko Susilo', 
+        city: 'Yogyakarta', 
+        type: 'wd', 
+        amount: 7500000, 
+        text: 'WD 7.5 juta dalam 3 menit! Pelayanan terbaik, customer service ramah. Rekomendasi banget buat yang cari situs terpercaya. 💸',
+        stars: 5,
+        time: '1 hari lalu',
+        avatarColor: 'green'
+      },
+      { 
+        user: 'Dewi Lestari', 
+        city: 'Semarang', 
+        type: 'jp', 
+        amount: 5200000, 
+        text: 'Jackpot! Pasang Over 2.5 + BTTS, odds @5.2. Modal 100k jadi 520k. Main di KAPSUL4D selalu seru! 🎉',
+        stars: 5,
+        time: '1 hari lalu',
+        avatarColor: 'red'
+      },
+      { 
+        user: 'Hendra Gunawan', 
+        city: 'Makassar', 
+        type: 'bonus', 
+        amount: 200000, 
+        text: 'Bonus cashback mingguan lumayan banget! Kekalahan dikit dapat bonus lagi. KAPSUL4D peduli membernya. 🙏',
+        stars: 4,
+        time: '2 hari lalu',
+        avatarColor: 'indigo'
+      },
+      { 
+        user: 'Tina Anggraini', 
+        city: 'Palembang', 
+        type: 'win', 
+        amount: 4200000, 
+        text: 'Prediksi KAPSUL4D akurat banget! Ikutin rekomendasi Sevilla ML + Over 2.5, tembus semua. WD 4.2 juta! 🚀',
+        stars: 5,
+        time: '2 hari lalu',
+        avatarColor: 'pink'
+      },
+      { 
+        user: 'Rudi Hartono', 
+        city: 'Bali', 
+        type: 'wd', 
+        amount: 12000000, 
+        text: 'WD 12 juta tanpa ribet. Proses cepat, admin profesional. KAPSUL4D memang situs betting terbaik di Indonesia! 🌟',
+        stars: 5,
+        time: '3 hari lalu',
+        avatarColor: 'amber'
+      },
+      { 
+        user: 'Maya Sari', 
+        city: 'Aceh', 
+        type: 'jp', 
+        amount: 2100000, 
+        text: 'Main slot di KAPSUL4D dapet jackpot 2.1 juta! Baru main 3x spin, langsung hoki. Makasih KAPSUL4D! 🎰',
+        stars: 5,
+        time: '3 hari lalu',
+        avatarColor: 'purple'
+      },
+      { 
+        user: 'Doni Saputra', 
+        city: 'Lampung', 
+        type: 'win', 
+        amount: 1800000, 
+        text: 'Single bet Arsenal -1, odds @1.85. Menang 1.8 juta. KAPSUL4D odds-nya kompetitif, lebih tinggi dari situs lain! 🔥',
+        stars: 5,
+        time: '4 hari lalu',
+        avatarColor: 'green'
+      },
+      { 
+        user: 'Nita Wulandari', 
+        city: 'Bogor', 
+        type: 'bonus', 
+        amount: 50000, 
+        text: 'Dapat bonus referral 50k! Ajak teman daftar dapat bonus terus. Lumayan banget buat tambah modal. 👥',
+        stars: 4,
+        time: '4 hari lalu',
+        avatarColor: 'red'
+      },
     ];
-    var methods = ['Bank BCA', 'Bank BNI', 'Bank Mandiri', 'E-Wallet', 'QRIS', 'Bank BRI', 'Bank Danamon'];
-    var statuses = ['success', 'success', 'pending', 'success', 'success', 'success', 'failed', 'success'];
-    var types = ['deposit', 'withdraw'];
 
-    function generateRandomTransaction() {
-      var user = userNames[Math.floor(Math.random() * userNames.length)];
-      var type = types[Math.floor(Math.random() * types.length)];
-      var status = statuses[Math.floor(Math.random() * statuses.length)];
-      var method = methods[Math.floor(Math.random() * methods.length)];
-      var amount = Math.floor(Math.random() * 5000000) + 100000;
-      amount = Math.round(amount / 50000) * 50000;
-      txIdCounter++;
-      return {
-        id: txIdCounter,
-        user: user + '****',
-        type: type,
-        amount: amount,
-        method: method,
-        status: status,
-        time: 'Baru saja',
-        timestamp: Date.now()
-      };
-    }
+    // ===== VARIABLES =====
+    var currentTestiFilter = 'all';
+    var currentTestiFilterFull = 'all';
+    var totalWd = 0;
+    var totalJp = 0;
+    var totalMember = 1248;
 
-    function initTransactionData() {
-      for (var i = 0; i < 20; i++) {
-        var tx = generateRandomTransaction();
-        tx.time = getTimeAgo(Math.floor(Math.random() * 60) + 1);
-        transactionData.push(tx);
-      }
-      transactionData.sort(function(a, b) { return b.timestamp - a.timestamp; });
-    }
-
-    function getTimeAgo(minutes) {
-      if (minutes < 1) return 'Baru saja';
-      if (minutes === 1) return '1 menit lalu';
-      if (minutes < 60) return minutes + ' menit lalu';
-      var hours = Math.floor(minutes / 60);
-      if (hours === 1) return '1 jam lalu';
-      return hours + ' jam lalu';
-    }
-
-    function addLiveTransaction() {
-      var newTx = generateRandomTransaction();
-      newTx.time = 'Baru saja';
-
-      transactionData.forEach(function(tx) {
-        if (tx.time === 'Baru saja') {
-          tx.time = '1 menit lalu';
-        } else if (tx.time === '1 menit lalu') {
-          tx.time = '2 menit lalu';
-        } else {
-          var match = tx.time.match(/(\d+)\s*menit lalu/);
-          if (match) {
-            var minutes = parseInt(match[1]) + 1;
-            tx.time = minutes + ' menit lalu';
-          }
-        }
-      });
-
-      transactionData.unshift(newTx);
-      liveTxCount++;
-      document.getElementById('liveCounter').textContent = liveTxCount;
-
-      if (transactionData.length > 50) {
-        transactionData.pop();
-      }
-
-      updateTransactionStats();
-      renderTransactions('transactionList', currentTxFilter);
-      renderTransactions('transactionFullList', currentTxFilter);
-
-      setTimeout(function() {
-        liveTxCount = 0;
-        document.getElementById('liveCounter').textContent = '0';
-      }, 30000);
-    }
-
-    function startLiveSimulation() {
-      setTimeout(function() {
-        addLiveTransaction();
-      }, 1000);
-
-      function scheduleNext() {
-        var delay = Math.floor(Math.random() * 5000) + 3000;
-        setTimeout(function() {
-          addLiveTransaction();
-          scheduleNext();
-        }, delay);
-      }
-      scheduleNext();
-    }
-
-    /* ============================================================
-       RENDER TRANSACTIONS
-       ============================================================ */
-
-    var currentTxFilter = 'all';
-    var currentTxFilterFull = 'all';
-
+    // ===== FORMAT RUPIAH =====
     function formatRupiah(amount) {
       return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
-    function getStatusClass(status) {
-      if (status === 'success') return 'success';
-      if (status === 'pending') return 'pending';
-      return 'failed';
+    // ===== AVATAR COLOR CLASS =====
+    function getAvatarClass(color) {
+      var map = {
+        'green': 'green',
+        'amber': 'amber',
+        'red': 'red',
+        'purple': 'purple',
+        'pink': 'pink',
+        'indigo': 'purple'
+      };
+      return map[color] || 'green';
     }
 
-    function getTypeIcon(type) {
-      if (type === 'deposit') return '↓';
-      return '↑';
+    // ===== BADGE TYPE =====
+    function getBadgeType(type) {
+      var map = {
+        'wd': { class: 'badge-wd', label: '💸 Withdraw', icon: '💰' },
+        'jp': { class: 'badge-jp', label: '🏆 Jackpot', icon: '🎰' },
+        'bonus': { class: 'badge-bonus', label: '🎁 Bonus', icon: '🎉' },
+        'win': { class: 'badge-win', label: '✅ Menang', icon: '🏅' }
+      };
+      return map[type] || { class: 'badge-wd', label: '💸 Sukses', icon: '⭐' };
     }
 
-    function getTypeClass(type) {
-      if (type === 'deposit') return 'plus';
-      return 'minus';
+    // ===== STARS =====
+    function renderStars(count) {
+      return '⭐'.repeat(count) + '☆'.repeat(5 - count);
     }
 
-    function renderTransactions(containerId, filter) {
+    // ===== RENDER TESTIMONI =====
+    function renderTestimoni(containerId, filter) {
       var container = document.getElementById(containerId);
       if (!container) return;
 
-      var data = transactionData;
+      var data = TESTIMONI_DATA;
       if (filter && filter !== 'all') {
-        data = data.filter(function(tx) { return tx.type === filter; });
+        data = data.filter(function(t) { return t.type === filter; });
       }
 
       if (!data.length) {
-        container.innerHTML = '<div class="glass text-center py-8 text-white/20 text-xs">Belum ada transaksi</div>';
+        container.innerHTML = '<div class="glass text-center py-8 text-white/20 text-xs">Belum ada testimoni untuk kategori ini</div>';
         return;
       }
 
-      container.innerHTML = data.map(function(tx, idx) {
-        var statusClass = getStatusClass(tx.status);
-        var typeClass = getTypeClass(tx.type);
-        var typeIcon = getTypeIcon(tx.type);
-        var statusLabel = tx.status === 'success' ? 'Sukses' : tx.status === 'pending' ? 'Pending' : 'Gagal';
-        var isNew = tx.time === 'Baru saja';
-
-        return '<div class="tx-card glass p-2.5 sm:p-3 flex items-center justify-between gap-2 flex-wrap tx-' + tx
-          .type + ' tx-' + tx.status + ' ' + (isNew ? 'tx-new' : '') + '" style="animation-delay:' + (idx * 0.02) +
-          's">' +
-          '<div class="flex items-center gap-2.5 min-w-0 flex-1">' +
-          '<div class="w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold ' + (tx.type ===
-            'deposit' ? 'bg-green-500/10 text-green-400' : 'bg-red-500/10 text-red-400') + '">' + typeIcon +
+      container.innerHTML = data.map(function(t, idx) {
+        var badge = getBadgeType(t.type);
+        var avatarCls = getAvatarClass(t.avatarColor);
+        var stars = renderStars(t.stars);
+        
+        return '<div class="testimoni-card glass anim-in" style="animation-delay:' + (idx * 0.04) + 's">' +
+          '<div class="quote-icon">"</div>' +
+          '<div class="flex items-start gap-3">' +
+          '<div class="user-avatar ' + avatarCls + ' flex-shrink-0">' + t.user.charAt(0) + '</div>' +
+          '<div class="flex-1 min-w-0">' +
+          '<div class="flex items-center justify-between flex-wrap gap-1">' +
+          '<div class="flex items-center gap-2">' +
+          '<span class="text-sm font-bold text-white">' + t.user + '</span>' +
+          '<span class="text-[8px] text-white/30">' + t.city + '</span>' +
           '</div>' +
-          '<div class="min-w-0">' +
-          '<div class="text-xs font-semibold text-white truncate">' + tx.user + '</div>' +
-          '<div class="text-[8px] text-white/30">' + tx.method + ' · ' + tx.time + '</div>' +
+          '<span class="testimoni-badge ' + badge.class + ' text-[7px]">' + badge.label + '</span>' +
+          '</div>' +
+          '<div class="flex items-center gap-2 mt-0.5">' +
+          '<span class="star text-[10px]">' + stars + '</span>' +
+          '<span class="text-[8px] text-white/20">' + t.time + '</span>' +
+          '</div>' +
+          '<p class="text-[11px] text-white/70 leading-relaxed mt-1.5">"' + t.text + '"</p>' +
+          '<div class="flex items-center gap-3 mt-2 pt-1.5 border-t border-white/5">' +
+          '<span class="text-[9px] font-bold text-green-400">' + formatRupiah(t.amount) + '</span>' +
+          '<span class="text-[7px] text-white/20">' + badge.icon + ' ' + badge.label.replace(/[^\w\s]/g, '').trim() + '</span>' +
+          '<a href="https://akseslink.com/kapsul4d" target="_blank" class="text-[8px] font-bold text-cyan-400 hover:text-cyan-300 transition-colors ml-auto">🎯 Daftar Sekarang</a>' +
           '</div>' +
           '</div>' +
-          '<div class="flex items-center gap-3 flex-shrink-0 flex-wrap">' +
-          '<div class="tx-amount ' + typeClass + ' text-sm">' + formatRupiah(tx.amount) + '</div>' +
-          '<span class="tx-status ' + statusClass + '">' + statusLabel + '</span>' +
-          (isNew ? '<span class="text-[7px] bg-green-400/10 text-green-400 border border-green-400/10 px-1 py-0.1 rounded-full">NEW</span>' :
-            '') +
           '</div>' +
           '</div>';
       }).join('');
     }
 
-    function updateTransactionStats() {
-      var totalDeposit = 0, totalWithdraw = 0, totalSuccess = 0, totalPending = 0;
-      transactionData.forEach(function(tx) {
-        if (tx.type === 'deposit') totalDeposit += tx.amount;
-        else totalWithdraw += tx.amount;
-        if (tx.status === 'success') totalSuccess++;
-        if (tx.status === 'pending') totalPending++;
+    // ===== UPDATE TESTIMONI STATS =====
+    function updateTestiStats() {
+      totalWd = 0;
+      totalJp = 0;
+      TESTIMONI_DATA.forEach(function(t) {
+        if (t.type === 'wd') totalWd += t.amount;
+        if (t.type === 'jp') totalJp += t.amount;
       });
 
-      document.querySelectorAll('#totalDeposit, #totalDepositFull').forEach(function(el) {
-        if (el) el.textContent = formatRupiah(totalDeposit);
+      var rating = 0;
+      TESTIMONI_DATA.forEach(function(t) { rating += t.stars; });
+      var avgRating = TESTIMONI_DATA.length > 0 ? Math.round((rating / TESTIMONI_DATA.length) * 20) : 0;
+
+      document.querySelectorAll('#totalWd, #totalWdFull').forEach(function(el) {
+        if (el) el.textContent = formatRupiah(totalWd);
       });
-      document.querySelectorAll('#totalWithdraw, #totalWithdrawFull').forEach(function(el) {
-        if (el) el.textContent = formatRupiah(totalWithdraw);
+      document.querySelectorAll('#totalJp, #totalJpFull').forEach(function(el) {
+        if (el) el.textContent = TESTIMONI_DATA.filter(function(t) { return t.type === 'jp'; }).length;
       });
-      document.querySelectorAll('#totalSuccess, #totalSuccessFull').forEach(function(el) {
-        if (el) el.textContent = totalSuccess;
+      document.querySelectorAll('#totalMember, #totalMemberFull').forEach(function(el) {
+        if (el) el.textContent = totalMember.toLocaleString();
       });
-      document.querySelectorAll('#totalPending, #totalPendingFull').forEach(function(el) {
-        if (el) el.textContent = totalPending;
+      document.querySelectorAll('#totalRating, #totalRatingFull').forEach(function(el) {
+        if (el) el.textContent = avgRating + '%';
       });
     }
 
-    function filterTransaction(type) {
-      currentTxFilter = type;
-      document.querySelectorAll('#secDashboard .bet-type-tab[data-txfilter]').forEach(function(el) {
-        if (el) el.classList.toggle('active', el.dataset.txfilter === type);
+    // ===== FILTER FUNCTIONS =====
+    function filterTesti(type) {
+      currentTestiFilter = type;
+      document.querySelectorAll('#secDashboard .bet-type-tab[data-testifilter]').forEach(function(el) {
+        if (el) el.classList.toggle('active', el.dataset.testifilter === type);
       });
-      renderTransactions('transactionList', currentTxFilter);
+      renderTestimoni('testimoniList', currentTestiFilter);
     }
 
-    function filterTransactionFull(type) {
-      currentTxFilterFull = type;
-      document.querySelectorAll('#secTransaksi .bet-type-tab[data-txfilter]').forEach(function(el) {
-        if (el) el.classList.toggle('active', el.dataset.txfilter === type);
+    function filterTestiFull(type) {
+      currentTestiFilterFull = type;
+      document.querySelectorAll('#secTestimoni .bet-type-tab[data-testifilter]').forEach(function(el) {
+        if (el) el.classList.toggle('active', el.dataset.testifilter === type);
       });
-      renderTransactions('transactionFullList', currentTxFilterFull);
+      renderTestimoni('testimoniFullList', currentTestiFilterFull);
     }
 
-    /* ============================================================
-       ENGINE - RENDER FUNCTIONS
-       ============================================================ */
+    // ===== NAVIGATION =====
+    function navigateTo(section) {
+      var map = {
+        'dashboard': 'secDashboard',
+        'jadwal': 'secJadwal',
+        'prediksi': 'secPrediksi',
+        'parlay': 'secParlay',
+        'testimoni': 'secTestimoni'
+      };
+      
+      document.querySelectorAll('.nav-item[data-section]').forEach(function(n) { n.classList.remove('active'); });
+      document.querySelector('.nav-item[data-section="' + section + '"]').classList.add('active');
+      
+      ['secDashboard', 'secJadwal', 'secPrediksi', 'secParlay', 'secTestimoni'].forEach(function(id) {
+        document.getElementById(id).style.display = 'none';
+      });
+      document.getElementById(map[section]).style.display = '';
+      
+      document.getElementById('headerTitle').textContent = sectionMeta[section].title;
+      document.getElementById('headerDesc').textContent = sectionMeta[section].desc;
+      
+      if (window.innerWidth < 1024) {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('show');
+      }
+      lucide.createIcons();
 
-    var selectedDateFilter = 'ALL';
-    var currentBetFilter = 'all';
-    var currentBetFilterFull = 'all';
+      if (section === 'testimoni' || section === 'dashboard') {
+        renderTestimoni('testimoniList', currentTestiFilter);
+        renderTestimoni('testimoniFullList', currentTestiFilterFull);
+        updateTestiStats();
+      }
+    }
+
+    // ===== SIDEBAR =====
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('show');
+    }
+
+    // ============================================================
+    // OTHER RENDER FUNCTIONS (SAME AS BEFORE)
+    // ============================================================
 
     var palette = [
       ['from-red-500', 'to-red-700'], ['from-blue-500', 'to-blue-700'], ['from-emerald-500', 'to-emerald-700'],
@@ -1500,17 +1696,12 @@
     ];
 
     function colorFor(name) { var h = 0; for (var i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h); return palette[Math.abs(h) % palette.length]; }
-
     function abbr(name) { var p = name.split(' '); if (p.length >= 2 && p[0].length <= 3) return p[0].toUpperCase(); if (p.length >= 2) return (p[0][0] + p[1][0]).toUpperCase(); return name.substring(0, 3).toUpperCase(); }
 
     function badge(name, size) { var c = colorFor(name); var cls = size === 'lg' ? 'team-badge team-badge-lg' : 'team-badge'; return '<div class="' + cls + ' bg-gradient-to-br ' + c[0] + ' ' + c[1] + ' text-white">' + abbr(name) + '</div>'; }
-
     function scoreOutcome(score) { var p = score.split('-').map(function(s) { return parseInt(s.trim()); }); if (p[0] > p[1]) return { cls: 'tag-home', label: 'Kandang' }; if (p[0] < p[1]) return { cls: 'tag-away', label: 'Tandang' }; return { cls: 'tag-draw', label: 'Seri' }; }
-
     function dateLabel(d) { var p = d.split('/'); var m = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']; return parseInt(p[0]) + ' ' + m[parseInt(p[1])]; }
-
     function getOdds(conf) { var base = 1.8; if (conf === 'high') base = 1.5 + Math.random() * 0.8; else if (conf === 'mid') base = 2.0 + Math.random() * 1.0; else base = 2.5 + Math.random() * 1.2; return parseFloat(base.toFixed(2)); }
-
     function getPredictionForMatch(h, a) { return PREDICTIONS.find(function(p) { return p.home === h && p.away === a; }); }
 
     function generateAllBets() {
@@ -1539,115 +1730,6 @@
       }
       return { singles: singles, parlays: parlays };
     }
-
-    function filterBetType(t) { currentBetFilter = t; document.querySelectorAll('#secDashboard .bet-type-tab[data-bettype]').forEach(function(e) { if (e) e.classList.toggle('active', e.dataset.bettype === t); }); renderParlay('parlayRecommendations', 6); }
-
-    function filterBetTypeFull(t) { currentBetFilterFull = t; document.querySelectorAll('#secParlay .bet-type-tab[data-bettype]').forEach(function(e) { if (e) e.classList.toggle('active', e.dataset.bettype === t); }); renderParlayFull(); }
-
-    function renderParlay(cid, limit) {
-      var c = document.getElementById(cid);
-      if (!c) return;
-      var all = generateAllBets(), display = [];
-      if (currentBetFilter === 'all' || currentBetFilter === 'single') display = display.concat(all.singles);
-      if (currentBetFilter === 'all' || currentBetFilter === 'parlay') display = display.concat(all.parlays);
-      display.sort(function(a, b) { if (a.type === 'single' && b.type === 'parlay') return -1; if (a.type === 'parlay' && b.type === 'single') return 1; return 0; });
-      if (limit) display = display.slice(0, limit);
-      if (!display.length) { c.innerHTML = '<div class="glass text-center py-10 text-white/20 text-xs col-span-full">Belum ada rekomendasi</div>'; return; }
-      c.innerHTML = display.map(function(item, idx) {
-        if (item.type === 'single') {
-          var m = item.match, p = item.prediction, score = p ? p.score : '? - ?', o = scoreOutcome(score), od = item.odds.toFixed(2), cc = item.confidence === 'high' ? 'conf-high' : 'conf-mid';
-          return '<div class="single-card glass p-3 sm:p-4 anim-in border-l-2 border-cyan-400/30" style="animation-delay:' + (idx * 0.04) + 's">' +
-            '<div class="flex items-center justify-between mb-2">' +
-            '<div class="flex items-center gap-1.5"><span class="text-xs">⚡</span><span class="text-[9px] font-bold text-white/60">Single</span><span class="text-[7px] bg-cyan-400/5 text-cyan-300/50 border border-cyan-400/10 px-1.5 py-0.5 rounded">' + m.league + '</span></div>' +
-            '<div class="text-right"><div class="text-xs font-black parlay-odds">@' + od + '</div><div class="text-[7px] text-white/20">Odds</div></div>' +
-            '</div>' +
-            '<div class="flex items-center justify-between gap-1">' +
-            '<div class="flex items-center gap-1.5 flex-1 min-w-0">' + badge(m.home) + '<span class="text-xs font-semibold truncate">' + m.home + '</span></div>' +
-            '<div class="flex flex-col items-center px-1"><span class="text-sm font-black text-white">' + score + '</span><span class="pred-tag ' + o.cls + ' text-[7px]">' + o.label + '</span></div>' +
-            '<div class="flex items-center gap-1.5 flex-1 min-w-0 justify-end"><span class="text-xs font-semibold truncate text-right">' + m.away + '</span>' + badge(m.away) + '</div>' +
-            '</div>' +
-            '<div class="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-between">' +
-            '<span class="text-[7px] text-white/20">' + m.time + ' WIB</span>' +
-            '<span class="confidence ' + cc + ' text-[7px]">' + (item.confidence === 'high' ? 'Tinggi' : 'Sedang') + '</span>' +
-            '<a href="https://akseslink.com/kapsul4d" target="_blank" class="text-[8px] font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Pasang →</a>' +
-            '</div>' +
-            '</div>';
-        } else {
-          var ms = item.matches, ps = item.predictions, to = item.totalOdds.toFixed(2);
-          var mh = ms.map(function(m, mi) { var p = ps[mi] || { score: '? - ?' }, o = scoreOutcome(p.score), od = getOdds(p.confidence || 'mid').toFixed(2); return '<div class="flex items-center justify-between py-1 border-b border-white/5 last:border-0">' +
-              '<div class="flex items-center gap-1.5 min-w-0 flex-1">' + badge(m.home) + '<span class="text-[9px] font-semibold truncate">' + m.home + '</span></div>' +
-              '<div class="flex flex-col items-center px-1"><span class="text-[9px] font-bold text-white">' + p.score + '</span><span class="pred-tag ' + o.cls + ' text-[6px]">' + o.label + '</span></div>' +
-              '<div class="flex items-center gap-1.5 min-w-0 flex-1 justify-end"><span class="text-[9px] font-semibold truncate text-right">' + m.away + '</span>' + badge(m.away) + '</div>' +
-              '<span class="text-[7px] text-amber-400 ml-0.5 font-bold">@' + od + '</span>' +
-              '</div>'; }).join('');
-          return '<div class="parlay-card glass p-3 sm:p-4 anim-in border-l-2 border-amber-400/30" style="animation-delay:' + (idx * 0.04) + 's">' +
-            '<div class="flex items-center justify-between mb-2">' +
-            '<div class="flex items-center gap-1.5"><span class="text-xs">🔥</span><span class="text-[9px] font-bold text-white/60">Parlay 3</span><span class="parlay-badge text-[6px]">' + item.source + '</span></div>' +
-            '<div class="text-right"><div class="text-xs font-black parlay-odds">@' + to + '</div><div class="text-[7px] text-white/20">Total Odds</div></div>' +
-            '</div>' +
-            '<div class="space-y-0.5">' + mh + '</div>' +
-            '<div class="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-between">' +
-            '<span class="text-[7px] text-white/20">3 tim terpilih</span>' +
-            '<a href="https://akseslink.com/kapsul4d" target="_blank" class="text-[8px] font-bold text-amber-400 hover:text-amber-300 transition-colors">Pasang →</a>' +
-            '</div>' +
-            '</div>';
-        }
-      }).join('');
-    }
-
-    function renderParlayFull() {
-      var c = document.getElementById('parlayFullList');
-      if (!c) return;
-      var all = generateAllBets(), display = [];
-      if (currentBetFilterFull === 'all' || currentBetFilterFull === 'single') display = display.concat(all.singles);
-      if (currentBetFilterFull === 'all' || currentBetFilterFull === 'parlay') display = display.concat(all.parlays);
-      display.sort(function(a, b) { if (a.type === 'single' && b.type === 'parlay') return -1; if (a.type === 'parlay' && b.type === 'single') return 1; return 0; });
-      if (!display.length) { c.innerHTML = '<div class="glass text-center py-10 text-white/20 text-xs col-span-full">Belum ada rekomendasi</div>'; return; }
-      c.innerHTML = display.map(function(item, idx) {
-        if (item.type === 'single') {
-          var m = item.match, p = item.prediction, score = p ? p.score : '? - ?', o = scoreOutcome(score), od = item.odds.toFixed(2), cc = item.confidence === 'high' ? 'conf-high' : 'conf-mid';
-          return '<div class="single-card glass p-3 sm:p-4 anim-in border-l-2 border-cyan-400/30" style="animation-delay:' + (idx * 0.03) + 's">' +
-            '<div class="flex items-center justify-between mb-2">' +
-            '<div class="flex items-center gap-1.5"><span class="text-xs">⚡</span><span class="text-[9px] font-bold text-white/60">Single</span><span class="text-[7px] bg-cyan-400/5 text-cyan-300/50 border border-cyan-400/10 px-1.5 py-0.5 rounded">' + m.league + '</span></div>' +
-            '<div class="text-right"><div class="text-xs font-black parlay-odds">@' + od + '</div><div class="text-[7px] text-white/20">Odds</div></div>' +
-            '</div>' +
-            '<div class="flex items-center justify-between gap-1">' +
-            '<div class="flex items-center gap-1.5 flex-1 min-w-0">' + badge(m.home) + '<span class="text-xs font-semibold truncate">' + m.home + '</span></div>' +
-            '<div class="flex flex-col items-center px-1"><span class="text-sm font-black text-white">' + score + '</span><span class="pred-tag ' + o.cls + ' text-[7px]">' + o.label + '</span></div>' +
-            '<div class="flex items-center gap-1.5 flex-1 min-w-0 justify-end"><span class="text-xs font-semibold truncate text-right">' + m.away + '</span>' + badge(m.away) + '</div>' +
-            '</div>' +
-            '<div class="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-between">' +
-            '<span class="text-[7px] text-white/20">' + m.time + ' WIB</span>' +
-            '<span class="confidence ' + cc + ' text-[7px]">' + (item.confidence === 'high' ? 'Tinggi' : 'Sedang') + '</span>' +
-            '<a href="https://akseslink.com/kapsul4d" target="_blank" class="text-[8px] font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Pasang →</a>' +
-            '</div>' +
-            '</div>';
-        } else {
-          var ms = item.matches, ps = item.predictions, to = item.totalOdds.toFixed(2);
-          var mh = ms.map(function(m, mi) { var p = ps[mi] || { score: '? - ?' }, o = scoreOutcome(p.score), od = getOdds(p.confidence || 'mid').toFixed(2); return '<div class="flex items-center justify-between py-1 border-b border-white/5 last:border-0">' +
-              '<div class="flex items-center gap-1.5 min-w-0 flex-1">' + badge(m.home) + '<span class="text-[9px] font-semibold truncate">' + m.home + '</span></div>' +
-              '<div class="flex flex-col items-center px-1"><span class="text-[9px] font-bold text-white">' + p.score + '</span><span class="pred-tag ' + o.cls + ' text-[6px]">' + o.label + '</span></div>' +
-              '<div class="flex items-center gap-1.5 min-w-0 flex-1 justify-end"><span class="text-[9px] font-semibold truncate text-right">' + m.away + '</span>' + badge(m.away) + '</div>' +
-              '<span class="text-[7px] text-amber-400 ml-0.5 font-bold">@' + od + '</span>' +
-              '</div>'; }).join('');
-          return '<div class="parlay-card glass p-3 sm:p-4 anim-in border-l-2 border-amber-400/30" style="animation-delay:' + (idx * 0.03) + 's">' +
-            '<div class="flex items-center justify-between mb-2">' +
-            '<div class="flex items-center gap-1.5"><span class="text-xs">🔥</span><span class="text-[9px] font-bold text-white/60">Parlay 3</span><span class="parlay-badge text-[6px]">' + item.source + '</span></div>' +
-            '<div class="text-right"><div class="text-xs font-black parlay-odds">@' + to + '</div><div class="text-[7px] text-white/20">Total Odds</div></div>' +
-            '</div>' +
-            '<div class="space-y-0.5">' + mh + '</div>' +
-            '<div class="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-between">' +
-            '<span class="text-[7px] text-white/20">3 tim terpilih</span>' +
-            '<a href="https://akseslink.com/kapsul4d" target="_blank" class="text-[8px] font-bold text-amber-400 hover:text-amber-300 transition-colors">Pasang →</a>' +
-            '</div>' +
-            '</div>';
-        }
-      }).join('');
-    }
-
-    /* ============================================================
-       RENDER FUNCTIONS
-       ============================================================ */
 
     function updateStats() {
       document.getElementById('statTotal').textContent = MATCHES.length;
@@ -1742,6 +1824,8 @@
       c.innerHTML = h;
     }
 
+    var selectedDateFilter = 'ALL';
+
     function filterByDate(d) { selectedDateFilter = d; renderDateTabs(); filterMatches(); }
 
     function renderSchedule(data) {
@@ -1781,20 +1865,76 @@
       renderSchedule(filtered);
     }
 
+    function renderParlayFull() {
+      var c = document.getElementById('parlayFullList');
+      if (!c) return;
+      var all = generateAllBets(), display = [];
+      if (currentBetFilterFull === 'all' || currentBetFilterFull === 'single') display = display.concat(all.singles);
+      if (currentBetFilterFull === 'all' || currentBetFilterFull === 'parlay') display = display.concat(all.parlays);
+      display.sort(function(a, b) { if (a.type === 'single' && b.type === 'parlay') return -1; if (a.type === 'parlay' && b.type === 'single') return 1; return 0; });
+      if (!display.length) { c.innerHTML = '<div class="glass text-center py-10 text-white/20 text-xs col-span-full">Belum ada rekomendasi</div>'; return; }
+      c.innerHTML = display.map(function(item, idx) {
+        if (item.type === 'single') {
+          var m = item.match, p = item.prediction, score = p ? p.score : '? - ?', o = scoreOutcome(score), od = item.odds.toFixed(2), cc = item.confidence === 'high' ? 'conf-high' : 'conf-mid';
+          return '<div class="single-card glass p-3 sm:p-4 anim-in border-l-2 border-cyan-400/30" style="animation-delay:' + (idx * 0.03) + 's">' +
+            '<div class="flex items-center justify-between mb-2">' +
+            '<div class="flex items-center gap-1.5"><span class="text-xs">⚡</span><span class="text-[9px] font-bold text-white/60">Single</span><span class="text-[7px] bg-cyan-400/5 text-cyan-300/50 border border-cyan-400/10 px-1.5 py-0.5 rounded">' + m.league + '</span></div>' +
+            '<div class="text-right"><div class="text-xs font-black parlay-odds">@' + od + '</div><div class="text-[7px] text-white/20">Odds</div></div>' +
+            '</div>' +
+            '<div class="flex items-center justify-between gap-1">' +
+            '<div class="flex items-center gap-1.5 flex-1 min-w-0">' + badge(m.home) + '<span class="text-xs font-semibold truncate">' + m.home + '</span></div>' +
+            '<div class="flex flex-col items-center px-1"><span class="text-sm font-black text-white">' + score + '</span><span class="pred-tag ' + o.cls + ' text-[7px]">' + o.label + '</span></div>' +
+            '<div class="flex items-center gap-1.5 flex-1 min-w-0 justify-end"><span class="text-xs font-semibold truncate text-right">' + m.away + '</span>' + badge(m.away) + '</div>' +
+            '</div>' +
+            '<div class="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-between">' +
+            '<span class="text-[7px] text-white/20">' + m.time + ' WIB</span>' +
+            '<span class="confidence ' + cc + ' text-[7px]">' + (item.confidence === 'high' ? 'Tinggi' : 'Sedang') + '</span>' +
+            '<a href="https://akseslink.com/kapsul4d" target="_blank" class="text-[8px] font-bold text-cyan-400 hover:text-cyan-300 transition-colors">Pasang →</a>' +
+            '</div>' +
+            '</div>';
+        } else {
+          var ms = item.matches, ps = item.predictions, to = item.totalOdds.toFixed(2);
+          var mh = ms.map(function(m, mi) { var p = ps[mi] || { score: '? - ?' }, o = scoreOutcome(p.score), od = getOdds(p.confidence || 'mid').toFixed(2); return '<div class="flex items-center justify-between py-1 border-b border-white/5 last:border-0">' +
+              '<div class="flex items-center gap-1.5 min-w-0 flex-1">' + badge(m.home) + '<span class="text-[9px] font-semibold truncate">' + m.home + '</span></div>' +
+              '<div class="flex flex-col items-center px-1"><span class="text-[9px] font-bold text-white">' + p.score + '</span><span class="pred-tag ' + o.cls + ' text-[6px]">' + o.label + '</span></div>' +
+              '<div class="flex items-center gap-1.5 min-w-0 flex-1 justify-end"><span class="text-[9px] font-semibold truncate text-right">' + m.away + '</span>' + badge(m.away) + '</div>' +
+              '<span class="text-[7px] text-amber-400 ml-0.5 font-bold">@' + od + '</span>' +
+              '</div>'; }).join('');
+          return '<div class="parlay-card glass p-3 sm:p-4 anim-in border-l-2 border-amber-400/30" style="animation-delay:' + (idx * 0.03) + 's">' +
+            '<div class="flex items-center justify-between mb-2">' +
+            '<div class="flex items-center gap-1.5"><span class="text-xs">🔥</span><span class="text-[9px] font-bold text-white/60">Parlay 3</span><span class="parlay-badge text-[6px]">' + item.source + '</span></div>' +
+            '<div class="text-right"><div class="text-xs font-black parlay-odds">@' + to + '</div><div class="text-[7px] text-white/20">Total Odds</div></div>' +
+            '</div>' +
+            '<div class="space-y-0.5">' + mh + '</div>' +
+            '<div class="mt-2 pt-1.5 border-t border-white/5 flex items-center justify-between">' +
+            '<span class="text-[7px] text-white/20">3 tim terpilih</span>' +
+            '<a href="https://akseslink.com/kapsul4d" target="_blank" class="text-[8px] font-bold text-amber-400 hover:text-amber-300 transition-colors">Pasang →</a>' +
+            '</div>' +
+            '</div>';
+        }
+      }).join('');
+    }
+
+    var currentBetFilterFull = 'all';
+
+    function filterBetTypeFull(t) { currentBetFilterFull = t; document.querySelectorAll('#secParlay .bet-type-tab[data-bettype]').forEach(function(e) { if (e) e.classList.toggle('active', e.dataset.bettype === t); }); renderParlayFull(); }
+
+    // ===== NAVIGATION META =====
     var sectionMeta = {
-      dashboard: { title: 'Dashboard', desc: 'Ringkasan jadwal & transaksi live realtime' },
+      dashboard: { title: 'Dashboard', desc: 'Ringkasan jadwal, prediksi & testimoni member' },
       jadwal: { title: 'Jadwal', desc: 'Jadwal lengkap semua liga terupdate' },
       prediksi: { title: 'Prediksi', desc: 'Analisis skor berbasis performa tim' },
       parlay: { title: 'Mix Parlay', desc: 'Rekomendasi single & parlay 3 tim' },
-      transaksi: { title: 'Transaksi', desc: 'Live transaksi deposit & withdraw member' }
+      testimoni: { title: 'Testimoni', desc: 'Cerita sukses member KAPSUL4D' }
     };
 
+    // ===== SIDEBAR NAVIGATION =====
     document.querySelectorAll('.nav-item[data-section]').forEach(function(item) {
       item.addEventListener('click', function() {
         document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
         this.classList.add('active');
         var sec = this.dataset.section;
-        ['secDashboard', 'secJadwal', 'secPrediksi', 'secParlay', 'secTransaksi'].forEach(function(id) {
+        ['secDashboard', 'secJadwal', 'secPrediksi', 'secParlay', 'secTestimoni'].forEach(function(id) {
           document.getElementById(id).style.display = 'none';
         });
         document.getElementById('sec' + sec.charAt(0).toUpperCase() + sec.slice(1)).style.display = '';
@@ -1803,21 +1943,18 @@
         document.getElementById('searchWrapper').style.display = sec === 'jadwal' ? '' : 'none';
         if (window.innerWidth < 1024) { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
         lucide.createIcons();
-        if (sec === 'transaksi' || sec === 'dashboard') {
-          updateTransactionStats();
-          renderTransactions('transactionList', currentTxFilter);
-          renderTransactions('transactionFullList', currentTxFilter);
+        if (sec === 'testimoni' || sec === 'dashboard') {
+          renderTestimoni('testimoniList', currentTestiFilter);
+          renderTestimoni('testimoniFullList', currentTestiFilterFull);
+          updateTestiStats();
         }
       });
     });
-
-    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('sidebarOverlay').classList.toggle('show'); }
 
     /* ============================================================
        INIT
        ============================================================ */
 
-    initTransactionData();
     lucide.createIcons();
     updateStats();
     renderTicker();
@@ -1826,12 +1963,10 @@
     renderDateTabs();
     renderSchedule(MATCHES);
     renderPrediksi();
-    renderParlay('parlayRecommendations', 6);
     renderParlayFull();
-    updateTransactionStats();
-    renderTransactions('transactionList', 'all');
-    renderTransactions('transactionFullList', 'all');
-    startLiveSimulation();
+    renderTestimoni('testimoniList', 'all');
+    renderTestimoni('testimoniFullList', 'all');
+    updateTestiStats();
   </script>
 </body>
 </html>
